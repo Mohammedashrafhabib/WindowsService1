@@ -23,12 +23,12 @@ namespace WindowsService1
         
         protected override void OnStart(string[] args)
         {
-            LOG.write("Service is start at " + DateTime.Now);
+           /* LOG.write("Service is start at " + DateTime.Now);
             timer = new System.Timers.Timer();
             timer.Start();
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
             timer.Interval = 5000;
-            timer.Enabled = true;
+            timer.Enabled = true;*/
             for (int i = 1; i <=5; i++)
             {
                
@@ -37,11 +37,11 @@ namespace WindowsService1
         }
         private void OnElapsedTime(object source, ElapsedEventArgs e)
         {
-            LOG.write("Service is running at " + DateTime.Now);
+           // LOG.write("Service is running at " + DateTime.Now);
         }
         protected override void OnStop()
         {
-            LOG.write("Service is stoped at " + DateTime.Now);
+           // LOG.write("Service is stoped at " + DateTime.Now);
         }
     }
 }
