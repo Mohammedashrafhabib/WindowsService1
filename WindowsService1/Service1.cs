@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.IO;
+using System.Threading;
+
 namespace WindowsService1
 {
     public partial class Service1 : ServiceBase
@@ -17,16 +19,21 @@ namespace WindowsService1
         {
             InitializeComponent();
         }
-        Timer timer;
+        System.Timers.Timer timer;
         
         protected override void OnStart(string[] args)
         {
             LOG.write("Service is start at " + DateTime.Now);
-            timer = new Timer();
+            timer = new System.Timers.Timer();
             timer.Start();
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
             timer.Interval = 5000;
             timer.Enabled = true;
+            for (int i = 1; i <=5; i++)
+            {
+               
+                ThreadPool.QueueUserWorkItem(LOG.Print_to_File, i);
+            }
         }
         private void OnElapsedTime(object source, ElapsedEventArgs e)
         {
